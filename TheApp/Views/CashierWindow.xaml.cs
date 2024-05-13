@@ -3,11 +3,11 @@
 namespace TheApp.Views
 {
     /// <summary>
-    /// Interaction logic for LogInWindow.xaml
+    /// Interaction logic for CashieWindow.xaml
     /// </summary>
-    public partial class LogInWindow : Window
+    public partial class CashierWindow : Window
     {
-        public LogInWindow()
+        public CashierWindow()
         {
             InitializeComponent();
         }

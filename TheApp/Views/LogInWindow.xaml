@@ -7,6 +7,85 @@
         mc:Ignorable="d"
         Title="LogInWindow" Height="450" Width="800">
     <Grid>
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="LightGray" />
+                <GradientStop Color="BlanchedAlmond" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <TextBlock 
+            x:Name="LoginTitle" 
+            HorizontalAlignment="Center" 
+            Height="64" Width="218" 
+            Margin="0,35,0,0"
+            VerticalAlignment="Top"
+            TextAlignment="Center" 
+            FontSize="48" 
+            FontWeight="Bold"><Run Language="en-en" Text="LOGIN"/></TextBlock>
+
+        <TextBox x:Name="usernameBox" 
+            HorizontalAlignment="Left"
+            Height="23" Width="210" 
+            VerticalAlignment="Top"
+            Margin="343,156,0,0"/>
+        <PasswordBox 
+            x:Name="passwordBox" 
+            HorizontalAlignment="Left"
+            Height="23" Width="210"  
+            VerticalAlignment="Top" Margin="343,185,0,0"/>
+
+        <TextBlock HorizontalAlignment="Left"
+            Height="23" Width="86"
+            TextWrapping="Wrap"
+            VerticalAlignment="Top"
+            TextAlignment="Center"
+            FontSize="18" Margin="252,156,0,0" Text="Username"/>
+        <TextBlock 
+            HorizontalAlignment="Left"
+            Height="23"
+            TextWrapping="Wrap"
+            VerticalAlignment="Top"
+            Width="86"
+            TextAlignment="Center"
+            FontSize="18" Margin="252,185,0,0"><Run Text="Passwor"/><Run Language="ro-ro" Text="d"/></TextBlock>
+
+
+        <TextBlock 
+            HorizontalAlignment="Left"
+            Height="23"
+            TextWrapping="Wrap"
+            VerticalAlignment="Top"
+            Width="86"
+            TextAlignment="Center"
+            FontSize="18" Margin="252,212,0,0" Text="Type User"/>
+
+        <ComboBox 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top"
+            Height="24"
+            Margin="343,212,0,0"
+            Width="210"/>
+
+
+        <!--<Button
+            Content="Log in"
+            HorizontalAlignment="Left"
+            Margin="278,257,0,0"
+            VerticalAlignment="Top"
+            Height="29" Width="218"
+            Click="LogIn_Click"
+            FontSize="14" >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>-->
+
+
+
     </Grid>
 </Window>

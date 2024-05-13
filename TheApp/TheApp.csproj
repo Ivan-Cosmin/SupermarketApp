@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,27 +56,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\DataAccessLayer\CategoriesDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\DALHelper.cs" />
+    <Compile Include="Models\DataAccessLayer\ManufacturerDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ProductDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ProductOnReceiptDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ProductStockDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ReceiptDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\UserDAL.cs" />
+    <Compile Include="Models\EntityLayer\Categories.cs" />
+    <Compile Include="Views\AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CashieWindow.xaml.cs">
-      <DependentUpon>CashieWindow.xaml</DependentUpon>
+    <Compile Include="Views\CashierWindow.xaml.cs">
+      <DependentUpon>CashierWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\ModifyWindow.xaml.cs">
+      <DependentUpon>ModifyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductStockWindow.xaml.cs">
+      <DependentUpon>ProductStockWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AddProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CashieWindow.xaml">
+    <Page Include="Views\CashierWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,19 +103,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\ModifyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductStockWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Manufacturer.cs" />
-    <Compile Include="Models\Offers.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductOnReceipt.cs" />
-    <Compile Include="Models\ProductStock.cs" />
-    <Compile Include="Models\Receipt.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\EntityLayer\Manufacturer.cs" />
+    <Compile Include="Models\EntityLayer\Product.cs" />
+    <Compile Include="Models\EntityLayer\ProductOnReceipt.cs" />
+    <Compile Include="Models\EntityLayer\ProductStock.cs" />
+    <Compile Include="Models\EntityLayer\Receipt.cs" />
+    <Compile Include="Models\EntityLayer\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -122,6 +145,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\BusinessLogicLayer\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

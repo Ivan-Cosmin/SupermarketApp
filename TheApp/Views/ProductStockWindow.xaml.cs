@@ -3,11 +3,11 @@
 namespace TheApp.Views
 {
     /// <summary>
-    /// Interaction logic for LogInWindow.xaml
+    /// Interaction logic for ProductStockWindow.xaml
     /// </summary>
-    public partial class LogInWindow : Window
+    public partial class ProductStockWindow : Window
     {
-        public LogInWindow()
+        public ProductStockWindow()
         {
             InitializeComponent();
         }

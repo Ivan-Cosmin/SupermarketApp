@@ -7,6 +7,51 @@
         mc:Ignorable="d"
         Title="AdminWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="LightGray"/>
+                <GradientStop Color="BlanchedAlmond" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         
+        <!--<Button
+        Content="Add"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Margin="0,100,0,0"
+        Height="60" Width="416"
+        FontWeight ="Bold"
+        Click="Add_Click"
+        >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        
+        <Button
+            Content="Edit" 
+        HorizontalAlignment="Center" 
+        VerticalAlignment="Top" 
+        Height="60" Width="416"
+        FontWeight ="Bold"
+        Click="Edit_Click"
+        Margin="0,180,0,0">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+        
+        <Button Content="Delete"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Margin="0,260,0,0"
+        Height="60" Width="416"
+        FontWeight ="Bold"
+        Click="Delete_Click">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>-->
+
     </Grid>
 </Window>

@@ -1,5 +1,5 @@
 ﻿
-namespace App.Models
+namespace TheApp.Models.EntityLayer
 {
     public class ProductOnReceipt
     {
