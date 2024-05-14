@@ -4,13 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheApp.Views"
+        xmlns:ctx="clr-namespace:TheApp.ViewModels"
+        xmlns:convertor="clr-namespace:TheApp.Converters"
         mc:Ignorable="d"
         Title="LogInWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <ctx:LoginVM/>
+    </Window.DataContext>
+
     <Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="LightGray" />
@@ -18,11 +21,15 @@
             </LinearGradientBrush>
         </Grid.Background>
 
+        <Grid.Resources>
+            <convertor:UserConverter x:Key="UserConverter"/>
+        </Grid.Resources>
+
         <TextBlock 
             x:Name="LoginTitle" 
             HorizontalAlignment="Center" 
-            Height="64" Width="218" 
-            Margin="0,35,0,0"
+            Height="64" Width="210" 
+            Margin="0,24,0,0"
             VerticalAlignment="Top"
             TextAlignment="Center" 
             FontSize="48" 
@@ -33,18 +40,14 @@
             Height="23" Width="210" 
             VerticalAlignment="Top"
             Margin="343,156,0,0"/>
-        <PasswordBox 
-            x:Name="passwordBox" 
-            HorizontalAlignment="Left"
-            Height="23" Width="210"  
-            VerticalAlignment="Top" Margin="343,185,0,0"/>
-
         <TextBlock HorizontalAlignment="Left"
             Height="23" Width="86"
             TextWrapping="Wrap"
             VerticalAlignment="Top"
             TextAlignment="Center"
             FontSize="18" Margin="252,156,0,0" Text="Username"/>
+
+        
         <TextBlock 
             HorizontalAlignment="Left"
             Height="23"
@@ -52,8 +55,12 @@
             VerticalAlignment="Top"
             Width="86"
             TextAlignment="Center"
-            FontSize="18" Margin="252,185,0,0"><Run Text="Passwor"/><Run Language="ro-ro" Text="d"/></TextBlock>
-
+            FontSize="18" Margin="252,185,0,0"><Run Text="Password"/></TextBlock>
+        <TextBox x:Name="passwordBox" 
+            HorizontalAlignment="Left"
+            Height="23" Width="210" 
+            VerticalAlignment="Top"
+            Margin="343,186,0,0"/>
 
         <TextBlock 
             HorizontalAlignment="Left"
@@ -64,26 +71,38 @@
             TextAlignment="Center"
             FontSize="18" Margin="252,212,0,0" Text="Type User"/>
 
-        <ComboBox 
+        <ComboBox x:Name="typeUser" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Top"
             Height="24"
             Margin="343,212,0,0"
-            Width="210"/>
+            ItemsSource="{Binding TypeUsers}"
+            SelectedIndex="0"
+            Width="210" IsReadOnly="True"
+            />
 
 
-        <!--<Button
+        <Button
             Content="Log in"
-            HorizontalAlignment="Left"
-            Margin="278,257,0,0"
+            HorizontalAlignment="Center"
+            Margin="0,257,0,0"
             VerticalAlignment="Top"
             Height="29" Width="218"
-            Click="LogIn_Click"
-            FontSize="14" >
+            FontSize="14"     
+            Command="{Binding LoginCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource UserConverter}">
+                    <Binding ElementName="usernameBox"    Path="Text"/>
+                    <Binding ElementName="passwordBox"    Path="Text"/>
+                    <Binding ElementName="typeUser"       Path="Text"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
-        </Button>-->
+        </Button>
+
 
 
 

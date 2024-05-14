@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheApp.Views"
         mc:Ignorable="d"
-        Title="AddProductWindow" Height="290" Width="400" ResizeMode="NoResize">
+        Title="AddProductWindow" Height="490" Width="400" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -19,7 +19,7 @@
             Grid.Row="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,258,114" 
+            Margin="0,0,256,331" 
             Width="123"
             Height="39" 
             HorizontalContentAlignment="Right"
@@ -32,7 +32,7 @@
             VerticalAlignment="Bottom" 
             IsEditable="True"
             Opacity="0.8"
-            Margin="0,0,21,114"/>
+            Margin="0,0,19,331"/>
 
         <Label
             Content="Barcode"
@@ -42,21 +42,21 @@
             Height="39" 
             Width="123"
             HorizontalContentAlignment="Right"
-            Margin="0,0,258,202" VerticalContentAlignment="Center"/>
+            Margin="0,0,256,419" VerticalContentAlignment="Center"/>
         <TextBox 
             x:Name="BarcodeBox"
             Width="237" 
             Height="39" 
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,21,202" 
+            Margin="0,0,19,419" 
             Opacity="0.8"
             />
         <!--PreviewTextInput="NumberValidationTextBox"-->
 
         <Label
             Content="Name of product"
-            Margin="0,0,257,158"
+            Margin="0,0,255,375"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             FontSize="14"
@@ -69,13 +69,13 @@
             Height="39" 
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,21,158" 
+            Margin="0,0,19,375" 
             Opacity="0.8"
             />
 
         <Button 
             Content="Add"
-            Margin="0,0,21,17" 
+            Margin="0,0,19,234" 
             VerticalAlignment="Bottom" 
             Height="36" 
             FontWeight ="Bold" HorizontalAlignment="Right" Width="118"/>
@@ -86,7 +86,7 @@
             Grid.Row="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,258,70" 
+            Margin="0,0,256,287" 
             Width="123"
             Height="39" 
             HorizontalContentAlignment="Right"
@@ -99,7 +99,7 @@
             VerticalAlignment="Bottom" 
             IsEditable="True"
             Opacity="0.8"
-            Margin="0,0,21,70"/>
+            Margin="0,0,19,287"/>
 
 
     </Grid>
