@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheApp.Views"
+        xmlns:ctx="clr-namespace:TheApp.ViewModels"
         mc:Ignorable="d"
-        Title="ProductStockWindow" Height="400" Width="415" ResizeMode="NoResize">
+        Title="ProductStockWindow" Height="550" Width="545" ResizeMode="NoResize">
+    <Window.DataContext>
+        <ctx:ProductStockVM/>
+    </Window.DataContext>
+
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -20,19 +25,23 @@
             VerticalAlignment="Bottom"
             FontSize="14" 
             Height="30" 
-            Width="132"
+            Width="135"
             HorizontalContentAlignment="Right"
-            Margin="0,0,259,312"
+            Margin="0,0,372,479"
         />
         <ComboBox 
             x:Name="ProductComboBox"
             Height="30"
-            Width="236"
+            Width="241"
             VerticalAlignment="Bottom" 
             HorizontalAlignment="Right"
+            ItemsSource="{Binding ProductsList}"
+            DisplayMemberPath="Name"
             IsEditable="True"
             Opacity="0.8"
-            Margin="0,0,10,312"
+            Margin="0,0,117,479"
+            SelectedItem="{Binding Stock.Product}"
+            Text="{Binding Stock.Product.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         />
 
 
@@ -41,163 +50,195 @@
             Grid.Row="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,259,278" 
-            Width="132"
+            Margin="0,0,372,445" 
+            Width="135"
             Height="30" 
             HorizontalContentAlignment="Right"
             FontSize="14"/>
         <TextBox 
             x:Name="QuantityBox"
-            Width="236" 
+            Width="241" 
             Height="30" 
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,10,278" 
+            Margin="0,0,117,445" 
             Opacity="0.8"
+            Text="{Binding Stock.Quantity}"
+            PreviewTextInput="NumberValidationTextBox"
+            
         />
-        <!--PreviewTextInput="NumberValidationTextBox"-->
 
 
         <Label
             Content="Purchase Price"
-            Margin="0,0,258,209"
+            Margin="0,0,371,376"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             FontSize="14"
-            Width="133" Height="30" 
+            Width="136" Height="30" 
             HorizontalContentAlignment="Right"
         />
         <TextBox 
             x:Name="PurchasePriceBox"
-            Width="236" 
+            Width="241" 
             Height="30" 
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,10,209" 
+            Margin="0,0,117,376" 
             Opacity="0.8"
+            Text="{Binding Stock.PurchasePrice, UpdateSourceTrigger=PropertyChanged}"
+            PreviewTextInput="NumberValidationTextBox"
         />
-        <!--PreviewTextInput="NumberValidationTextBox"-->
-
+        
 
         <Label
             Content="Selling Price"
-            Margin="0,0,258,175"
+            Margin="0,0,371,342"
             HorizontalContentAlignment="Right"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             FontSize="14"
             Height="29"
-            Width="133"/>
+            Width="136"/>
         <TextBox 
             x:Name="SellingPriceBox"
-            Width="236" 
+            Width="241" 
             Height="29" 
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,10,175" 
+            Margin="0,0,117,342" 
             Opacity="0.8"
             IsReadOnly="True"
+            Text="{Binding Stock.SellingPrice}"
         />
 
 
         <Label
             Content="Supply Date"
-            Margin="0,0,189,140"
+            Margin="0,0,415,308"
             HorizontalContentAlignment="Right"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             FontSize="14"
             Height="29"
-            Width="95"
+            Width="87"
         />
         <DatePicker 
             x:Name="SupplyDatePicker" 
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,10,140"
+            Margin="0,0,309,308"
             Height="29"
-            Width="179" 
+            Width="106" 
             IsTodayHighlighted="True" 
             SelectedDateFormat="Short"
+            SelectedDate="{Binding Stock.SupplyDate}"
       />
 
 
         <Label
             Content="Expiry Date"
-            Margin="0,0,189,105"
+            Margin="0,0,222,308"
             HorizontalContentAlignment="Right"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             FontSize="14"
-            Height="30"
-            Width="95"/>
+            Height="29"
+            Width="87"/>
         <DatePicker 
             x:Name="ExpiryDatePicker" 
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,10,105"
+            Margin="0,0,117,307"
             Height="30"
-            Width="179" 
+            Width="105" 
             IsTodayHighlighted="True" 
-            DisplayDateStart="2024-05-12"
+            DisplayDateStart="{Binding Stock.ExpiryDate}"
+            SelectedDate="{Binding Stock.ExpiryDate}"
         />
         <Label 
             Content="Unit of measure"
             Grid.Row="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,259,244" 
-            Width="132"
+            Margin="0,0,372,411" 
+            Width="135"
             Height="29" 
             HorizontalContentAlignment="Right"
             FontSize="14"/>
         <TextBox 
             x:Name="UnitOfMeasureBox"
-            Width="236" 
+            Width="241" 
             Height="29" 
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
-            Margin="0,0,10,244" 
+            Margin="0,0,117,411" 
             Opacity="0.8"
+            Text="{Binding Stock.UnitOfMeasure}"
         />
 
 
         <Button 
             Content="Add"
-            Margin="0,0,207,26" 
+            Margin="0,0,10,479" 
             VerticalAlignment="Bottom" 
             HorizontalAlignment="Right"
-            Height="26" 
-            Width="184"
+            Height="30" 
+            Width="82"
             FontWeight ="Bold"
+            Command="{Binding AddCommand}"
+            CommandParameter="{Binding Stock}"
         />
         <Button 
             Content="Edit"
-            Margin="0,0,7,62" 
+            Margin="0,0,10,445" 
             FontWeight ="Bold"
-            Height="26" 
-            Width="184"
+            Height="30" 
+            Width="82"
             VerticalAlignment="Bottom"
-            HorizontalAlignment="Right" 
+            HorizontalAlignment="Right"
+            Command="{Binding UpdateCommand}"
+            CommandParameter="{Binding Stock}"
             />
         <Button 
             Content="Delete"
-            Margin="0,0,207,62" 
+            Margin="0,0,10,411" 
             VerticalAlignment="Bottom" 
             HorizontalAlignment="Right"
-            Height="26" 
-            Width="184"
-            FontWeight ="Bold" 
+            Height="29" 
+            Width="82"
+            FontWeight ="Bold"
+            Command="{Binding DeleteCommand}"
+            CommandParameter="{Binding Stock}"
             />
         <Button 
-            Content="Select"
-            Margin="0,0,5,29" 
+            Content="Clear"
+            Margin="0,0,10,377" 
             VerticalAlignment="Bottom" 
             HorizontalAlignment="Right"
-            Height="26" 
-            Width="184"
+            Height="29" 
+            Width="82"
             FontWeight ="Bold"
-        />
+            Command="{Binding ClearCommand}"
+            CommandParameter="{Binding Stock}"
+            />
+
+        <DataGrid x:Name="ProductStocksGrid" AutoGenerateColumns="False"
+            ItemsSource="{Binding ProductStocksList, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="13,249,10,35"
+            SelectedItem="{Binding Stock, Mode=TwoWay}"
+            SelectionMode="Extended"
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product" Binding="{Binding Product.Name}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+                <DataGridTextColumn Header="Unit Of Measure" Binding="{Binding UnitOfMeasure}"/>
+                <DataGridTextColumn Header="Purchase Price" Binding="{Binding PurchasePrice}"/>
+                <DataGridTextColumn Header="Sell Price" Binding="{Binding SellingPrice}"/>
+                <DataGridTextColumn Header="Suplly Date" Binding="{Binding SupplyDate}"/>
+                <DataGridTextColumn Header="Expire Date" Binding="{Binding ExpiryDate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+     
 
     </Grid>
 </Window>

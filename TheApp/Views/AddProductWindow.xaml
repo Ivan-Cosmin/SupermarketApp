@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheApp.Views"
         mc:Ignorable="d"
-        Title="AddProductWindow" Height="490" Width="400" ResizeMode="NoResize">
+        Title="AddProductWindow" Height="500" Width="400" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

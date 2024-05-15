@@ -56,11 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\UserConverter.cs" />
-    <Compile Include="Exceptions\Exception1.cs" />
     <Compile Include="Models\BusinessLogicLayer\LoginBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ManufacturerBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProductBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ProductStockBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ReceiptBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\UsersBLL.cs" />
     <Compile Include="Models\DataAccessLayer\CategoriesDAL.cs" />
@@ -72,9 +71,11 @@
     <Compile Include="Models\DataAccessLayer\ProductStockDAL.cs" />
     <Compile Include="Models\DataAccessLayer\ReceiptDAL.cs" />
     <Compile Include="Models\DataAccessLayer\UserDAL.cs" />
+    <Compile Include="Models\EntityLayer\BasePropertyChanged.cs" />
     <Compile Include="Models\EntityLayer\Categories.cs" />
     <Compile Include="ViewModels\Commands\RelayCommand.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\ProductStockVM.cs" />
     <Compile Include="Views\AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
     </Compile>

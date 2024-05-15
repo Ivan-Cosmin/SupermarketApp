@@ -11,5 +11,13 @@ namespace TheApp.Views
         {
             InitializeComponent();
         }
+
+        private void NumberValidationTextBox(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if(DataContext is ViewModels.ProductStockVM vm)
+            {
+                vm.NumberValidationTextBox(sender, e);
+            }
+        }
     }
 }

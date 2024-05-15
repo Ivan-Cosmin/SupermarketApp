@@ -15,19 +15,31 @@ namespace TheApp.Models.BusinessLogicLayer
         LoginDAL loginDAL = new LoginDAL();
         public void ValidateLogin(User user)
         {
-            if(loginDAL.ValidateLogin(user) == "Admin")
+            if (user.Username == null)
+            {
+               throw new Exception ("Please enter username");
+            }
+
+            if(user.Password == null)
+            {
+                throw new Exception("Please enter password");
+            }
+
+            string userType = loginDAL.ValidateLogin(user);
+
+            if(userType == "Admin")
             {
                 AdminWindow adminWindow = new AdminWindow();
                 adminWindow.Show();
             }
-            else if(loginDAL.ValidateLogin(user) == "Cashier")
+            else if(userType == "Cashier")
             {
                 CashierWindow cashierWindow = new CashierWindow();
                 cashierWindow.Show();
             }
             else
             {
-                MessageBox.Show("Invalid username or password");
+                throw new Exception("Invalid username or password");
             }
         }
 

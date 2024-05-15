@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TheApp.Models.BusinessLogicLayer;
 using TheApp.Models.EntityLayer;
@@ -14,7 +15,7 @@ using TheApp.ViewModels.Commands;
 
 namespace TheApp.ViewModels
 {
-    internal class LoginVM : INotifyPropertyChanged
+    internal class LoginVM : BasePropertyChanged
     {
         public LoginVM() 
         { 
@@ -23,39 +24,38 @@ namespace TheApp.ViewModels
                 "Admin",
                 "Cashier"
             };
+
+            User = new User();
         }
 
         LoginBLL loginBLL = new LoginBLL();
 
-        private ObservableCollection<string> _typeUsers;
-        public ObservableCollection<string> TypeUsers
-        {
-            get { return _typeUsers; }
-            set
-            {
-                _typeUsers = value;
-                OnPropertyChanged();
-            }
-        }
+        public User User { get; set; }
+        public ObservableCollection<string> TypeUsers { get; set; }
 
         private ICommand loginCommand;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public ICommand LoginCommand
         {
             get
             {
                 if (loginCommand == null)
                 {
-                    loginCommand = new RelayCommand<User>(loginBLL.ValidateLogin);
+                    loginCommand = new RelayCommand(Login);
                 }
                 return loginCommand;
             }
         }
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+
+        public void Login(object parameter)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            try 
+            {
+                loginBLL.ValidateLogin(User);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
