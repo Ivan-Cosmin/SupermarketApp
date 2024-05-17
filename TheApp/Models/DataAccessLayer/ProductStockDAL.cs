@@ -12,26 +12,10 @@ namespace TheApp.Models.DataAccessLayer
 {
     internal class ProductStockDAL
     {
-        internal static bool VerifyExistentStock(ProductStock stock)
-        {
-            using (SqlConnection con = DALHelper.Connection)
-            {
-                SqlCommand cmd = new SqlCommand("VerifyExistentStock", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ID", stock.Id);
-                con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    return true;
-                }
-                return false;
-            }
-        }
-
         internal void AddStock(ProductStock stock)
         {
-            using (SqlConnection con = DALHelper.Connection)
+            SqlConnection con = DALHelper.Connection;
+            try 
             {
                 SqlCommand cmd = new SqlCommand("AddProductStock", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -43,24 +27,42 @@ namespace TheApp.Models.DataAccessLayer
                 cmd.Parameters.AddWithValue("@PurchasePrice", stock.PurchasePrice);
                 cmd.Parameters.AddWithValue("@SellingPrice", stock.SellingPrice);
                 con.Open();
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                (SqlException ex)
+                {
+                    throw ex;
+                }
             }
-        }
-
-        internal void DeleteStock(ProductStock stock)
-        {
-            throw new NotImplementedException();
+            finally
+            {
+                con.Close();
+            }
         }
 
         internal ObservableCollection<Product> GetProductsList()
         {
-            using (SqlConnection con = DALHelper.Connection)
+            SqlConnection con = DALHelper.Connection;
+            try
             {
                 SqlCommand cmd = new SqlCommand("GetAllProducts", con);
                 ObservableCollection<Product> result = new ObservableCollection<Product>();
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
+                SqlDataReader reader;
+
+                try
+                {
+                    reader = cmd.ExecuteReader();
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+
                 while (reader.Read())
                 {
                     result.Add(
@@ -76,17 +78,32 @@ namespace TheApp.Models.DataAccessLayer
                 reader.Close();
                 return result;
             }
+            finally
+            {
+                con.Close();
+            }
         }
 
         internal ObservableCollection<ProductStock> GetProductStockList()
         {
-            using (SqlConnection con = DALHelper.Connection)
+            SqlConnection con = DALHelper.Connection;
+            try
             {
                 SqlCommand cmd = new SqlCommand("GetAllProductStocks", con);
                 ObservableCollection<ProductStock> result = new ObservableCollection<ProductStock>();
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
+                SqlDataReader reader; 
+                
+                try
+                {
+                    reader = cmd.ExecuteReader();
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+
                 while (reader.Read())
                 {
                     result.Add(
@@ -112,11 +129,10 @@ namespace TheApp.Models.DataAccessLayer
                 reader.Close();
                 return result;
             }
-        }
-
-        internal void ModifyStock(ProductStock stock)
-        {
-            throw new NotImplementedException();
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

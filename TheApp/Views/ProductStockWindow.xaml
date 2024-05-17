@@ -65,9 +65,30 @@
             Opacity="0.8"
             Text="{Binding Stock.Quantity}"
             PreviewTextInput="NumberValidationTextBox"
-            
         />
 
+
+        <Label 
+      Content="Unit of measure"
+      Grid.Row="0"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Bottom"
+      Margin="0,0,372,411" 
+        Width="135"
+        Height="29" 
+        HorizontalContentAlignment="Right"
+        FontSize="14"
+        />
+        <TextBox 
+            x:Name="UnitOfMeasureBox"
+            Width="241" 
+            Height="29" 
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="0,0,117,411" 
+            Opacity="0.8"
+            Text="{Binding Stock.UnitOfMeasure}"
+            />
 
         <Label
             Content="Purchase Price"
@@ -132,7 +153,7 @@
             Width="106" 
             IsTodayHighlighted="True" 
             SelectedDateFormat="Short"
-            SelectedDate="{Binding Stock.SupplyDate}"
+            SelectedDate="{Binding Stock.SupplyDate, StringFormat='dd/MM/yyyy'}"
       />
 
 
@@ -154,29 +175,9 @@
             Width="105" 
             IsTodayHighlighted="True" 
             DisplayDateStart="{Binding Stock.ExpiryDate}"
-            SelectedDate="{Binding Stock.ExpiryDate}"
+            SelectedDate="{Binding Stock.ExpiryDate, StringFormat='dd/MM/yyyy'}"
         />
-        <Label 
-            Content="Unit of measure"
-            Grid.Row="0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Margin="0,0,372,411" 
-            Width="135"
-            Height="29" 
-            HorizontalContentAlignment="Right"
-            FontSize="14"/>
-        <TextBox 
-            x:Name="UnitOfMeasureBox"
-            Width="241" 
-            Height="29" 
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Margin="0,0,117,411" 
-            Opacity="0.8"
-            Text="{Binding Stock.UnitOfMeasure}"
-        />
-
+      
 
         <Button 
             Content="Add"
@@ -189,43 +190,9 @@
             Command="{Binding AddCommand}"
             CommandParameter="{Binding Stock}"
         />
-        <Button 
-            Content="Edit"
-            Margin="0,0,10,445" 
-            FontWeight ="Bold"
-            Height="30" 
-            Width="82"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Right"
-            Command="{Binding UpdateCommand}"
-            CommandParameter="{Binding Stock}"
-            />
-        <Button 
-            Content="Delete"
-            Margin="0,0,10,411" 
-            VerticalAlignment="Bottom" 
-            HorizontalAlignment="Right"
-            Height="29" 
-            Width="82"
-            FontWeight ="Bold"
-            Command="{Binding DeleteCommand}"
-            CommandParameter="{Binding Stock}"
-            />
-        <Button 
-            Content="Clear"
-            Margin="0,0,10,377" 
-            VerticalAlignment="Bottom" 
-            HorizontalAlignment="Right"
-            Height="29" 
-            Width="82"
-            FontWeight ="Bold"
-            Command="{Binding ClearCommand}"
-            CommandParameter="{Binding Stock}"
-            />
 
         <DataGrid x:Name="ProductStocksGrid" AutoGenerateColumns="False"
-            ItemsSource="{Binding ProductStocksList, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="13,249,10,35"
-            SelectedItem="{Binding Stock, Mode=TwoWay}"
+            ItemsSource="{Binding ProductStocksList, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10,249,10,35"
             SelectionMode="Extended"
             >
             <DataGrid.Columns>
@@ -234,8 +201,8 @@
                 <DataGridTextColumn Header="Unit Of Measure" Binding="{Binding UnitOfMeasure}"/>
                 <DataGridTextColumn Header="Purchase Price" Binding="{Binding PurchasePrice}"/>
                 <DataGridTextColumn Header="Sell Price" Binding="{Binding SellingPrice}"/>
-                <DataGridTextColumn Header="Suplly Date" Binding="{Binding SupplyDate}"/>
-                <DataGridTextColumn Header="Expire Date" Binding="{Binding ExpiryDate}"/>
+                <DataGridTextColumn Header="Suplly Date" Binding="{Binding SupplyDate, StringFormat='dd/MM/yyyy'}"/>
+                <DataGridTextColumn Header="Expire Date" Binding="{Binding ExpiryDate, StringFormat='dd/MM/yyyy'}"/>
             </DataGrid.Columns>
         </DataGrid>
      

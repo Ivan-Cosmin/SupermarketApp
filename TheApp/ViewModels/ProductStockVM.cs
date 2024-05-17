@@ -65,51 +65,14 @@ namespace TheApp.ViewModels
                 return addCommand;
             }
         }
-
-        private ICommand updateCommand;
-        public ICommand UpdateCommand
-        {
-            get
-            {
-                if (updateCommand == null)
-                {
-                    updateCommand = new RelayCommand(ModifyStock);
-                }
-                return updateCommand;
-            }
-        }
-
-        private ICommand deleteCommand;
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                if (deleteCommand == null)
-                {
-                    deleteCommand = new RelayCommand(DeleteStock);
-                }
-                return deleteCommand;
-            }
-        }
-
-        private ICommand clearCommand;
-        public ICommand ClearCommand
-        {
-            get
-            {
-                if (clearCommand == null)
-                {
-                    clearCommand = new RelayCommand(Clear);
-                }
-                return clearCommand;
-            }
-        }
-
+ 
         public void AddStock(object parameter)
         {
             try
             {
                 productStockBLL.AddStock(Stock);
+                MessageBox.Show("Stock added successfully!");
+                Clear();
             }
             catch (Exception ex)
             {
@@ -117,33 +80,8 @@ namespace TheApp.ViewModels
             }
         }
 
-        public void ModifyStock(object parameter)
+        public void Clear()
         {
-            try
-            {
-                productStockBLL.ModifyStock(Stock);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        public void DeleteStock(object parameter)
-        {
-            try
-            {
-                productStockBLL.DeleteStock(Stock);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        public void Clear(object parameter)
-        {
-            Stock = null;
             Stock = new ProductStock()
             {
                 SupplyDate = DateTime.Now,

@@ -98,9 +98,15 @@ namespace TheApp.Models.EntityLayer
         {
             string vatValue = ConfigurationManager.AppSettings["VAT"];
             decimal vat = decimal.Parse(vatValue);
-
-            decimal profitMargin = PurchasePrice * vat /100; 
-            SellingPrice = PurchasePrice + profitMargin;
+            try
+            {
+                decimal profitMargin = PurchasePrice * vat / 100;
+                SellingPrice = PurchasePrice + profitMargin;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

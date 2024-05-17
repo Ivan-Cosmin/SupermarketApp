@@ -56,7 +56,6 @@ namespace TheApp.Models.BusinessLogicLayer
             {
                 throw new Exception("Supply Date must be before Expiry Date!");
             }
-            VerifyExistentStock(stock);
         }
 
         internal void AddStock(ProductStock stock)
@@ -64,15 +63,6 @@ namespace TheApp.Models.BusinessLogicLayer
             Validation(stock);
             stockDAL.AddStock(stock);
             ProductStocksList.Add(stock);
-        }
-        internal void ModifyStock(ProductStock stock)
-        {
-            stockDAL.ModifyStock(stock);
-        }
-
-        internal void DeleteStock(ProductStock stock)
-        {
-            stockDAL.DeleteStock(stock);
         }
 
         internal ObservableCollection<Product> GetProductsList()
@@ -82,14 +72,6 @@ namespace TheApp.Models.BusinessLogicLayer
         internal ObservableCollection<ProductStock> GetProductStocksList()
         {
             return stockDAL.GetProductStockList();
-        }
-
-        private void VerifyExistentStock(ProductStock stock)
-        {
-            if(ProductStockDAL.VerifyExistentStock(stock))
-            {
-                throw new Exception("Stock already exists!");
-            }
         }
     }
 }
