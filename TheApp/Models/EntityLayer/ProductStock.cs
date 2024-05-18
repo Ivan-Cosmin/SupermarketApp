@@ -5,7 +5,6 @@ namespace TheApp.Models.EntityLayer
 {
     internal class ProductStock : BasePropertyChanged
     {
-        private int _id;
         private Product _product;
         private int _quantity;
         private string _unitOfMeasure;
@@ -14,15 +13,6 @@ namespace TheApp.Models.EntityLayer
         private decimal _purchasePrice;
         private decimal _sellingPrice;
 
-        public int Id
-        {
-            get { return _id; }
-            set
-            {
-                _id = value;
-                NotifyPropertyChanged("Id");
-            }
-        }
         public Product Product
         {
             get { return _product; }

@@ -1,10 +1,13 @@
-﻿namespace TheApp.Models.EntityLayer
+﻿using System.Collections;
+
+namespace TheApp.Models.EntityLayer
 {
     internal class User : BasePropertyChanged
     {
         private string _username;
         private string _password;
         private string _type;
+        private bool _deleted;
 
         public string Username
         {
@@ -33,6 +36,16 @@
             {
                 _type = value;
                 NotifyPropertyChanged("Type");
+            }
+        }
+        
+        public bool Deleted
+        {
+            get { return _deleted; }
+            set
+            {
+                _deleted = value;
+                NotifyPropertyChanged("Deleted");
             }
         }
     }

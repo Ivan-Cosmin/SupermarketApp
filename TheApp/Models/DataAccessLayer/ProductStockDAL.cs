@@ -27,19 +27,11 @@ namespace TheApp.Models.DataAccessLayer
                 cmd.Parameters.AddWithValue("@PurchasePrice", stock.PurchasePrice);
                 cmd.Parameters.AddWithValue("@SellingPrice", stock.SellingPrice);
                 con.Open();
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch
-                (SqlException ex)
-                {
-                    throw ex;
-                }
+                cmd.ExecuteNonQuery();
             }
-            finally
+            catch(SqlException ex)
             {
-                con.Close();
+                throw ex;
             }
         }
 
@@ -53,16 +45,8 @@ namespace TheApp.Models.DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 SqlDataReader reader;
-
-                try
-                {
-                    reader = cmd.ExecuteReader();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-
+                reader = cmd.ExecuteReader();
+                
                 while (reader.Read())
                 {
                     result.Add(
@@ -78,9 +62,9 @@ namespace TheApp.Models.DataAccessLayer
                 reader.Close();
                 return result;
             }
-            finally
+            catch (SqlException ex)
             {
-                con.Close();
+                throw ex;
             }
         }
 
@@ -94,22 +78,13 @@ namespace TheApp.Models.DataAccessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 SqlDataReader reader; 
-                
-                try
-                {
-                    reader = cmd.ExecuteReader();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
+                reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     result.Add(
                               new ProductStock()
                                                {
-                            Id = Convert.ToInt32(reader["ID"]),
                             Product = new Product()
                             {
                                 Barcode = reader["Barcode"].ToString(),
@@ -129,9 +104,9 @@ namespace TheApp.Models.DataAccessLayer
                 reader.Close();
                 return result;
             }
-            finally
+            catch (SqlException ex)
             {
-                con.Close();
+                throw ex;
             }
         }
     }
