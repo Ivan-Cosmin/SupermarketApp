@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
 using TheApp.Models.BusinessLogicLayer;
 using TheApp.Models.EntityLayer;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 using TheApp.ViewModels.Commands;
 
 namespace TheApp.ViewModels
 {
-    internal class UsersVM : BasePropertyChanged
+    internal class CategoriesVM : BasePropertyChanged
     {
-        public UsersVM()
+        public CategoriesVM()
         {
             try
             {
-                usersBLL = new UsersBLL();
-                user = new User();
-                usersBLL.GetUsersList();
-                usersBLL.GetTypeUserList();
+                categoriesBLL = new CategoriesBLL();
+                category = new Category();
+                categoriesBLL.GetCategoriesList();
             }
             catch (Exception ex)
             {
@@ -31,42 +28,35 @@ namespace TheApp.ViewModels
             }
         }
 
-        private User user;
-        public User User
+        private Category category;
+        public Category Category
         {
-            get { return user; }
+            get { return category; }
             set
             {
-                user = value;
-                NotifyPropertyChanged("User");
+                category = value;
+                NotifyPropertyChanged("Category");
             }
         }
-        private User selectedUser;
-        public User SelectedUser
+        private Category selectedCategory;
+        public Category SelectedCategory
         {
-            get { return selectedUser; }
+            get { return selectedCategory; }
             set
             {
-                selectedUser = value;
-                User.Username = value.Username;
-                User.Password = value.Password;
-                User.Type = value.Type;
-                NotifyPropertyChanged("SelectedUser");
-                NotifyPropertyChanged("User");
+                selectedCategory = value;
+                Category.Name = value.Name;
+                NotifyPropertyChanged("SelectedCategory");
+                NotifyPropertyChanged("Category");
             }
         }
 
-        UsersBLL usersBLL;
+        CategoriesBLL categoriesBLL;
 
-        public ObservableCollection<User> UsersList
+        public ObservableCollection<Category> CategoriesList
         {
-            get => usersBLL.UsersList;
-            set => usersBLL.UsersList = value;
-        }
-        public ObservableCollection<string> TypeUserList
-        {
-            get => usersBLL.TypeUserList;
-            set => usersBLL.TypeUserList = value;
+            get => categoriesBLL.CategoriesList;
+            set => categoriesBLL.CategoriesList = value;
         }
 
         private ICommand addCommand;
@@ -79,7 +69,7 @@ namespace TheApp.ViewModels
             {
                 if (addCommand == null)
                 {
-                    addCommand = new RelayCommand(AddUser);
+                    addCommand = new RelayCommand(AddCategory);
                 }
                 return addCommand;
             }
@@ -90,7 +80,7 @@ namespace TheApp.ViewModels
             {
                 if (modifyCommand == null)
                 {
-                    modifyCommand = new RelayCommand(ModifyUser);
+                    modifyCommand = new RelayCommand(ModifyCategory);
                 }
                 return modifyCommand;
             }
@@ -101,7 +91,7 @@ namespace TheApp.ViewModels
             {
                 if (deleteCommand == null)
                 {
-                    deleteCommand = new RelayCommand(DeleteUser);
+                    deleteCommand = new RelayCommand(DeleteCategory);
                 }
                 return deleteCommand;
             }
@@ -112,18 +102,18 @@ namespace TheApp.ViewModels
             {
                 if (activateCommand == null)
                 {
-                    activateCommand = new RelayCommand(ActivateUser);
+                    activateCommand = new RelayCommand(ActivateCategory);
                 }
                 return activateCommand;
             }
         }
 
-        private void ActivateUser(object obj)
+        private void ActivateCategory(object obj)
         {
             try
             {
-                usersBLL.ActivateUser(SelectedUser);
-                MessageBox.Show("User activated successfully");
+                categoriesBLL.ActivateCategory(SelectedCategory);
+                MessageBox.Show("Category activated successfully");
                 Clear();
             }
             catch (Exception ex)
@@ -132,12 +122,12 @@ namespace TheApp.ViewModels
             }
         }
 
-        public void AddUser(object parameter)
+        public void AddCategory(object parameter)
         {
             try
             {
-                usersBLL.AddUser(User);
-                MessageBox.Show("User added successfully");
+                categoriesBLL.AddCategory(Category);
+                MessageBox.Show("Category added successfully");
                 Clear();
             }
             catch (Exception ex)
@@ -147,12 +137,12 @@ namespace TheApp.ViewModels
         }
 
 
-        public void ModifyUser(object parameter)
+        public void ModifyCategory(object parameter)
         {
             try
             {
-                usersBLL.ModifyUser(SelectedUser, User);
-                MessageBox.Show("User modified successfully");
+                categoriesBLL.ModifyCategory(SelectedCategory, Category);
+                MessageBox.Show("Category modified successfully");
                 Clear();
             }
             catch (Exception ex)
@@ -160,12 +150,12 @@ namespace TheApp.ViewModels
                 MessageBox.Show(ex.Message);
             }
         }
-        public void DeleteUser(object parameter)
+        public void DeleteCategory(object parameter)
         {
             try
             {
-                usersBLL.DeleteUser(SelectedUser);
-                MessageBox.Show("User deleted successfully");
+                categoriesBLL.DeleteCategory(SelectedCategory);
+                MessageBox.Show("Category deleted successfully");
                 Clear();
             }
             catch (Exception ex)
@@ -175,8 +165,7 @@ namespace TheApp.ViewModels
         }
         private void Clear()
         {
-            User = new User();
+            Category = new Category();
         }
-
     }
 }

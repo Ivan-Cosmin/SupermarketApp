@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\BusinessLogicLayer\CategoriesBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\LoginBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ManufacturerBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProductBLL.cs" />
@@ -72,7 +73,8 @@
     <Compile Include="Models\DataAccessLayer\ReceiptDAL.cs" />
     <Compile Include="Models\DataAccessLayer\UserDAL.cs" />
     <Compile Include="Models\EntityLayer\BasePropertyChanged.cs" />
-    <Compile Include="Models\EntityLayer\Categories.cs" />
+    <Compile Include="Models\EntityLayer\Category.cs" />
+    <Compile Include="ViewModels\CategoriesVM.cs" />
     <Compile Include="ViewModels\Commands\RelayCommand.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\ProductStockVM.cs" />
@@ -85,6 +87,9 @@
     </Compile>
     <Compile Include="Views\CashierWindow.xaml.cs">
       <DependentUpon>CashierWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CategoriesWindow.xaml.cs">
+      <DependentUpon>CategoriesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
@@ -111,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CashierWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CategoriesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
