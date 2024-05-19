@@ -10,17 +10,18 @@ using TheApp.Models.EntityLayer;
 
 namespace TheApp.Models.DataAccessLayer
 {
-    internal class CategoriesDAL
+    internal class ManufacturersDAL
     {
-        internal void AddCategory(Category category)
+        internal void AddManufacturer(Manufacturer manufacturer)
         {
             try
             {
                 SqlConnection con = DALHelper.Connection;
-                SqlCommand cmd = new SqlCommand("AddCategory", con);
+                SqlCommand cmd = new SqlCommand("AddManufacturer", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name", category.Name);
+                cmd.Parameters.AddWithValue("@Name", manufacturer.Name);
+                cmd.Parameters.AddWithValue("@CountryOfOrigin", manufacturer.CountryOfOrigin);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -32,15 +33,58 @@ namespace TheApp.Models.DataAccessLayer
             }
         }
 
-        internal void DeleteCategory(Category category)
+        internal void DeleteManufacturer(Manufacturer manufacturer)
         {
             try
             {
                 SqlConnection con = DALHelper.Connection;
-                SqlCommand cmd = new SqlCommand("DeleteCategory", con);
+                SqlCommand cmd = new SqlCommand("DeleteManufacturer", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name", category.Name);
+                cmd.Parameters.AddWithValue("@Name", manufacturer.Name);
+                cmd.Parameters.AddWithValue("@CountryOfOrigin", manufacturer.CountryOfOrigin);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+        internal void ActivateManufacturer(Manufacturer manufacturer)
+        {
+            try
+            {
+                SqlConnection con = DALHelper.Connection;
+                SqlCommand cmd = new SqlCommand("ActivateManufacturer", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Name", manufacturer.Name);
+                cmd.Parameters.AddWithValue("@CountryOfOrigin", manufacturer.CountryOfOrigin);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+        internal void ModifyManufacturer(Manufacturer selectedManufacturer, Manufacturer manufacturer)
+        {
+            try
+            {
+                SqlConnection con = DALHelper.Connection;
+                SqlCommand cmd = new SqlCommand("ModifyManufacturer", con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Name", selectedManufacturer.Name);
+                cmd.Parameters.AddWithValue("@CountryOfOrigin", selectedManufacturer.CountryOfOrigin);
+                cmd.Parameters.AddWithValue("@NewName", manufacturer.Name);
+                cmd.Parameters.AddWithValue("@NewCountryOfOrigin", manufacturer.CountryOfOrigin);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -52,54 +96,13 @@ namespace TheApp.Models.DataAccessLayer
             }
         }
 
-        internal void ActivateCategory(Category category)
+        internal ObservableCollection<Manufacturer> GetManufacturersList()
         {
             try
             {
                 SqlConnection con = DALHelper.Connection;
-                SqlCommand cmd = new SqlCommand("ActivateCategory", con);
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name", category.Name);
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-        internal void ModifyCategory(Category selectedCategory, Category category)
-        {
-            try
-            {
-                SqlConnection con = DALHelper.Connection;
-                SqlCommand cmd = new SqlCommand("ModifyCategory", con);
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name", selectedCategory.Name);
-                cmd.Parameters.AddWithValue("@NewName", category.Name);
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-        internal ObservableCollection<Category> GetCategoriesList()
-        {
-            try
-            {
-                SqlConnection con = DALHelper.Connection;
-                SqlCommand cmd = new SqlCommand("GetAllCategories", con);
-                ObservableCollection<Category> result = new ObservableCollection<Category>();
+                SqlCommand cmd = new SqlCommand("GetAllManufacturers", con);
+                ObservableCollection<Manufacturer> result = new ObservableCollection<Manufacturer>();
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
 
@@ -108,9 +111,10 @@ namespace TheApp.Models.DataAccessLayer
                 while (reader.Read())
                 {
                     result.Add(
-                        new Category()
+                        new Manufacturer()
                         {
                             Name = reader["Name"].ToString(),
+                            CountryOfOrigin = reader["CountryOfOrigin"].ToString(),
                             Deleted = (bool)reader["Deleted"]
                         }
                     );
@@ -125,22 +129,25 @@ namespace TheApp.Models.DataAccessLayer
                 throw ex;
             }
         }
-        internal void ValidateExistence(Category category)
+
+        internal void ValidateExistence(Manufacturer manufacturer)
         {
             try
             {
                 SqlConnection con = DALHelper.Connection;
-                SqlCommand cmd = new SqlCommand("CheckCategoryExists", con);
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name", category.Name);
+                SqlCommand cmd = new SqlCommand("CheckManufacturerExists", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Name", manufacturer.Name);
+                cmd.Parameters.AddWithValue("@CountryOfOrigin", manufacturer.CountryOfOrigin);
 
                 con.Open();
                 int result = (int)cmd.ExecuteScalar();
                 con.Close();
 
                 if (result == 1)
-                    throw new Exception("User already exists!");
+                    throw new Exception("Manufacturer already exists!");
             }
             catch (SqlException ex)
             {

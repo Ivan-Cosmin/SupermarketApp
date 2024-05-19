@@ -9,10 +9,10 @@ using TheApp.Models.EntityLayer;
 
 namespace TheApp.Models.BusinessLogicLayer
 {
-    internal class CategoriesBLL
+    internal class CategoryBLL
     {
         public ObservableCollection<Category> CategoriesList = new ObservableCollection<Category>();
-        CategoriesDAL categoriesDAL = new CategoriesDAL();
+        CategoryDAL categoriesDAL = new CategoryDAL();
 
         internal void AddCategory(Category category)
         {
@@ -78,7 +78,14 @@ namespace TheApp.Models.BusinessLogicLayer
         }
         internal void GetCategoriesList()
         {
-            CategoriesList = categoriesDAL.GetCategoriesList();
+            try
+            {
+                CategoriesList = categoriesDAL.GetCategoriesList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void Validate(Category category)

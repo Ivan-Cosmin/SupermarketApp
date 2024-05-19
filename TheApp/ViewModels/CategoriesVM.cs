@@ -18,7 +18,7 @@ namespace TheApp.ViewModels
         {
             try
             {
-                categoriesBLL = new CategoriesBLL();
+                categoriesBLL = new CategoryBLL();
                 category = new Category();
                 categoriesBLL.GetCategoriesList();
             }
@@ -51,7 +51,7 @@ namespace TheApp.ViewModels
             }
         }
 
-        CategoriesBLL categoriesBLL;
+        CategoryBLL categoriesBLL;
 
         public ObservableCollection<Category> CategoriesList
         {
@@ -108,7 +108,7 @@ namespace TheApp.ViewModels
             }
         }
 
-        private void ActivateCategory(object obj)
+        private void ActivateCategory(object parameter)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace TheApp.ViewModels
             }
         }
 
-        public void AddCategory(object parameter)
+        private void AddCategory(object parameter)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace TheApp.ViewModels
         }
 
 
-        public void ModifyCategory(object parameter)
+        private void ModifyCategory(object parameter)
         {
             try
             {

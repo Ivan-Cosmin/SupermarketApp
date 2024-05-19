@@ -56,17 +56,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\BusinessLogicLayer\CategoriesBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\CategoryBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\LoginBLL.cs" />
-    <Compile Include="Models\BusinessLogicLayer\ManufacturerBLL.cs" />
+    <Compile Include="Models\BusinessLogicLayer\ManufacturersBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProductBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ProductStockBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\ReceiptBLL.cs" />
     <Compile Include="Models\BusinessLogicLayer\UsersBLL.cs" />
-    <Compile Include="Models\DataAccessLayer\CategoriesDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\CategoryDAL.cs" />
     <Compile Include="Models\DataAccessLayer\DALHelper.cs" />
     <Compile Include="Models\DataAccessLayer\LoginDAL.cs" />
-    <Compile Include="Models\DataAccessLayer\ManufacturerDAL.cs" />
+    <Compile Include="Models\DataAccessLayer\ManufacturersDAL.cs" />
     <Compile Include="Models\DataAccessLayer\ProductDAL.cs" />
     <Compile Include="Models\DataAccessLayer\ProductOnReceiptDAL.cs" />
     <Compile Include="Models\DataAccessLayer\ProductStockDAL.cs" />
@@ -77,11 +77,10 @@
     <Compile Include="ViewModels\CategoriesVM.cs" />
     <Compile Include="ViewModels\Commands\RelayCommand.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
+    <Compile Include="ViewModels\ManufacturersVM.cs" />
     <Compile Include="ViewModels\ProductStockVM.cs" />
+    <Compile Include="ViewModels\ProductsVM.cs" />
     <Compile Include="ViewModels\UsersVM.cs" />
-    <Compile Include="Views\AddProductWindow.xaml.cs">
-      <DependentUpon>AddProductWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
@@ -98,19 +97,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\ModifyWindow.xaml.cs">
-      <DependentUpon>ModifyWindow.xaml</DependentUpon>
+    <Compile Include="Views\ManufacturersWindow.xaml.cs">
+      <DependentUpon>ManufacturersWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductStockWindow.xaml.cs">
       <DependentUpon>ProductStockWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductsWindow.xaml.cs">
+      <DependentUpon>ProductsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UsersWindow.xaml.cs">
       <DependentUpon>UsersWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AddProductWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,11 +125,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ModifyWindow.xaml">
+    <Page Include="Views\ManufacturersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductStockWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
