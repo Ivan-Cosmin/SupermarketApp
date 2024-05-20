@@ -54,8 +54,14 @@ namespace TheApp.Models.DataAccessLayer
                         {
                             Barcode = reader["Barcode"].ToString(),
                             Name = reader["ProductName"].ToString(),
-                            Category = reader["CategoryName"].ToString(),
-                            Manufacturer = reader["ManufacturerName"].ToString(),
+                            Category = new Category()
+                            {
+                                Name= reader["CategoryName"].ToString()
+                            },
+                            Manufacturer = new Manufacturer()
+                            {
+                               Name = reader["ManufacturerName"].ToString()
+                            }
                         }
                     );
                 }
@@ -89,8 +95,14 @@ namespace TheApp.Models.DataAccessLayer
                             {
                                 Barcode = reader["Barcode"].ToString(),
                                 Name = reader["ProductName"].ToString(),
-                                Category = reader["CategoryName"].ToString(),
-                                Manufacturer = reader["ManufacturerName"].ToString(),
+                                Category = new Category()
+                                {
+                                    Name = reader["CategoryName"].ToString()
+                                },
+                                Manufacturer = new Manufacturer()
+                                {
+                                    Name = reader["ManufacturerName"].ToString()
+                                }
                             },
                             Quantity = Convert.ToInt32(reader["Quantity"]),
                             UnitOfMeasure = reader["UnitOfMeasure"].ToString(),

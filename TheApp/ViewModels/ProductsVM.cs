@@ -21,7 +21,7 @@ namespace TheApp.ViewModels
             {
                 productBLL = new ProductBLL();
                 product = new Product();
-                productBLL.GetCategoriesList();
+                productBLL.GetProductsList();
                 productBLL.GetCategoriesList();
                 productBLL.GetManufacturersList();
             }
@@ -49,6 +49,9 @@ namespace TheApp.ViewModels
             {
                 selectedProduct = value;
                 Product.Name = value.Name;
+                Product.Barcode = value.Barcode;
+                Product.Category = value.Category;
+                Product.Manufacturer = value.Manufacturer;
                 NotifyPropertyChanged("SelectedProduct");
                 NotifyPropertyChanged("Product");
             }

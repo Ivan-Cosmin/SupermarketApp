@@ -130,7 +130,7 @@ namespace TheApp.Models.DataAccessLayer
             }
         }
 
-        internal void ValidateExistence(Manufacturer manufacturer)
+        internal int Validate(Manufacturer manufacturer)
         {
             try
             {
@@ -146,8 +146,33 @@ namespace TheApp.Models.DataAccessLayer
                 int result = (int)cmd.ExecuteScalar();
                 con.Close();
 
-                if (result == 1)
+                return result;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal void ValidateExistence(Manufacturer manufacturer)
+        {
+            try
+            {
+                if (Validate(manufacturer) == 1)
                     throw new Exception("Manufacturer already exists!");
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal void ValidateNonExistence(Manufacturer manufacturer)
+        {
+            try
+            {
+                if (Validate(manufacturer) == 0)
+                    throw new Exception("Manufacturer does not exists!");
             }
             catch (SqlException ex)
             {

@@ -125,7 +125,7 @@ namespace TheApp.Models.DataAccessLayer
                 throw ex;
             }
         }
-        internal void ValidateExistence(Category category)
+        internal int Validate(Category category)
         {
             try
             {
@@ -139,8 +139,34 @@ namespace TheApp.Models.DataAccessLayer
                 int result = (int)cmd.ExecuteScalar();
                 con.Close();
 
-                if (result == 1)
+                return result;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal void ValidateExistence(Category category)
+        {
+            try
+            {
+                if (Validate(category) == 1)
                     throw new Exception("Category already exists!");
+            }
+            catch(SqlException ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        internal void ValidateNonExistence(Category category)
+        {
+            try
+            {
+                if (Validate(category) == 0)
+                    throw new Exception("Category does not exists!");
             }
             catch (SqlException ex)
             {

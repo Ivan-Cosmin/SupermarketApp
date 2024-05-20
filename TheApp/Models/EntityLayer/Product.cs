@@ -4,8 +4,8 @@
     {
         private string _barcode;
         private string _name;
-        private string _category;
-        private string _manufacturer;
+        private Category _category;
+        private Manufacturer _manufacturer;
         private bool _deleted;
         public string Barcode
         {
@@ -25,7 +25,7 @@
                 NotifyPropertyChanged("Name");
             }
         }
-        public string Category
+        public Category Category
         {
             get { return _category; }
             set
@@ -34,7 +34,7 @@
                 NotifyPropertyChanged("Category");
             }
         }
-        public string Manufacturer
+        public Manufacturer Manufacturer
         {
             get { return _manufacturer; }
             set
