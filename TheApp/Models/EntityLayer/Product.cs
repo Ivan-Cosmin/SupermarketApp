@@ -2,6 +2,11 @@
 {
     internal class Product : BasePropertyChanged
     {
+        public Product()
+        {
+            Category = new Category();
+            Manufacturer = new Manufacturer();
+        }
         private string _barcode;
         private string _name;
         private Category _category;

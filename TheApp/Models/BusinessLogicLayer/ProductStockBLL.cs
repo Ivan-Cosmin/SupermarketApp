@@ -67,7 +67,8 @@ namespace TheApp.Models.BusinessLogicLayer
 
         internal ObservableCollection<Product> GetProductsList()
         {
-            return stockDAL.GetProductsList();
+            ProductDAL productDAL = new ProductDAL();
+            return productDAL.GetProductsList();
         }
         internal ObservableCollection<ProductStock> GetProductStocksList()
         {

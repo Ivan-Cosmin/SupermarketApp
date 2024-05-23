@@ -35,38 +35,22 @@ namespace TheApp.Models.DataAccessLayer
             }
         }
 
-        internal ObservableCollection<Product> GetProductsList()
+        internal int GetProductStockID(ProductStock stock)
         {
             SqlConnection con = DALHelper.Connection;
             try
             {
-                SqlCommand cmd = new SqlCommand("GetAllProducts", con);
-                ObservableCollection<Product> result = new ObservableCollection<Product>();
+                SqlCommand cmd = new SqlCommand("GetProductStockID", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Barcode", stock.Product.Barcode);
+                cmd.Parameters.AddWithValue("@PurchasePrice", stock.PurchasePrice);
                 con.Open();
-                SqlDataReader reader;
-                reader = cmd.ExecuteReader();
-                
-                while (reader.Read())
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
                 {
-                    result.Add(
-                        new Product()
-                        {
-                            Barcode = reader["Barcode"].ToString(),
-                            Name = reader["ProductName"].ToString(),
-                            Category = new Category()
-                            {
-                                Name= reader["CategoryName"].ToString()
-                            },
-                            Manufacturer = new Manufacturer()
-                            {
-                               Name = reader["ManufacturerName"].ToString()
-                            }
-                        }
-                    );
+                    return Convert.ToInt32(reader["ID"]);
                 }
-                reader.Close();
-                return result;
+                return -1;
             }
             catch (SqlException ex)
             {

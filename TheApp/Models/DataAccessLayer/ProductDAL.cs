@@ -177,7 +177,6 @@ namespace TheApp.Models.DataAccessLayer
             }
 
         }
-
         internal void ValidateNonExistence(Product product)
         {
             try

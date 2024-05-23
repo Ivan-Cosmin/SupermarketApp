@@ -114,7 +114,7 @@
            SelectedItem="{Binding Product.Manufacturer}"
            Text="{Binding Product.Manufacturer.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
         />
-        <DataGrid x:Name="ProductStocksGrid" AutoGenerateColumns="False"
+        <DataGrid x:Name="ProductGrid" AutoGenerateColumns="False"
            ItemsSource="{Binding ProductsList, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="10,211,10,23"
            SelectionMode="Extended"
            SelectedItem="{Binding SelectedProduct}"

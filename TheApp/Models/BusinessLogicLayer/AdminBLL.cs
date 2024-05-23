@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheApp.Models.BusinessLogicLayer
 {
-    internal class ReceiptBLL
+    internal class AdminBLL
     {
     }
 }

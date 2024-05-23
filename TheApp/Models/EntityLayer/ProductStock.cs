@@ -5,6 +5,11 @@ namespace TheApp.Models.EntityLayer
 {
     internal class ProductStock : BasePropertyChanged
     {
+        public ProductStock()
+        {
+            Product = new Product();
+        }
+
         private Product _product;
         private int _quantity;
         private string _unitOfMeasure;

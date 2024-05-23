@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,13 +30,20 @@ namespace TheApp.Models.BusinessLogicLayer
 
             if(userType == "Admin")
             {
-                AdminWindow adminWindow = new AdminWindow();
-                adminWindow.Show();
+                OpenAdminWindow();
             }
             else if(userType == "Cashier")
             {
-                CashierWindow cashierWindow = new CashierWindow();
-                cashierWindow.Show();
+                
+               OpenCashierWindow();
+               try
+                {
+                    WriteStringToFile(user.Username, "CashierLog.txt");
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error writing to file", ex);
+                }
             }
             else
             {
@@ -43,5 +51,41 @@ namespace TheApp.Models.BusinessLogicLayer
             }
         }
 
+        private void OpenCashierWindow()
+        {
+            var secondWindow = new CashierWindow();
+            Application.Current.MainWindow.Hide();
+            secondWindow.Show();
+            secondWindow.Closed += (s, e) =>
+            {
+                Application.Current.MainWindow.Show();
+            };
+        }
+
+        private void OpenAdminWindow()
+        {
+            var secondWindow = new AdminWindow();
+            Application.Current.MainWindow.Hide();
+            secondWindow.Show();
+            secondWindow.Closed += (s, e) =>
+            {
+                Application.Current.MainWindow.Show();
+            };
+        }
+
+        private void WriteStringToFile(string content, string filePath)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath, append: true))
+                {
+                    writer.WriteLine(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error writing to file", ex);
+            }
+        }
     }
 }
